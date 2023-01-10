@@ -1,0 +1,20 @@
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 6rem 1rem 1rem 1rem;
+    margin: 1rem;
+    background-color: rgb(31, 30, 30);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px -4px rgb(83, 83, 83);
+}
+.voteAverage{
+    padding: 1rem 0;
+}
+
+.cardContainer:hover{
+    cursor: pointer;
+    transform: scale(1.1,1.1);
+    transition: 300ms;
+}
