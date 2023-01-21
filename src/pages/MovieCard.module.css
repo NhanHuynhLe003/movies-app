@@ -1,20 +1,30 @@
-.cardContainer{
+.cardContainer {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 30%;
     padding: 6rem 1rem 1rem 1rem;
-    margin: 1rem;
+    margin: 2rem 1rem;
     background-color: rgb(31, 30, 30);
     color: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 10px -4px rgb(83, 83, 83);
-}
-.voteAverage{
-    padding: 1rem 0;
+    transition: transform 300ms;
 }
 
-.cardContainer:hover{
+.voteAverage {
+    padding: 1rem 0;
+    color: #FADA5E
+}
+
+.cardContainer:hover {
     cursor: pointer;
-    transform: scale(1.1,1.1);
-    transition: 300ms;
+    transform: scale(1.1, 1.1);
+}
+
+.backgroundThumbnail {
+    
+    height: 25rem;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
 }

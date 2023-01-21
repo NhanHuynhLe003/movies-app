@@ -1,7 +1,7 @@
 #homepageContainer{
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 7%;
     background: #000;
 }
 .content{
@@ -9,4 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+}
+.sectionContent{
+    background-color: #000;
 }

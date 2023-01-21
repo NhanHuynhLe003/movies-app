@@ -1,0 +1,27 @@
+.card{
+    width: 14%;
+    margin: 2rem;
+    transition: transform 200ms;
+
+}
+.card:hover{
+    transform: scale(1.1,1.1);
+    cursor: pointer;
+}
+.avatar{
+    border-radius: 50%;
+    height: 8rem;
+    width: 8rem;
+    background-size: cover;
+}
+#CastContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    
+}
+.nameChar{
+    color: #fff;
+    margin-top: 1rem;
+}

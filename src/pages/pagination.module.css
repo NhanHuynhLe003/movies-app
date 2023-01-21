@@ -1,0 +1,28 @@
+.disable{
+    opacity: 0.5;
+}
+
+.active{
+    color: #333 !important;
+    background-color: rgb(228, 210, 8) !important;
+    font-weight: 700 !important;
+}
+.ulElement{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+.btn{
+    color: #fff;
+    background-color: #333;
+    font-size: 1rem;
+    width: 100%;
+    padding: 1.5rem 0.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+.btn:hover{
+    color: #333;
+    background: rgb(228, 210, 8);
+}

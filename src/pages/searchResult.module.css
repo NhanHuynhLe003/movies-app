@@ -1,0 +1,24 @@
+.movieSearched{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    min-height: 65.5vh;
+}
+.contentSection{
+    padding: 2rem 0;
+}
+.pagination{
+    width:40%;
+    margin: 0 auto;
+}
+.searchResult{
+    background-color: #000;
+}
+.movieNotFound{
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 10;
+}

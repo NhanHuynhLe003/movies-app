@@ -1,43 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Navbar from "./Navbar";
 import style from "./homepage.module.css";
 import MovieCard from "./MovieCard";
-import MovieIcon from "../assets/svg/MovieIcon";
-import MovieDetail from "./MovieDetail";
+import { AppContext } from "../Context/AppContext";
+import Pagination from "./Pagination";
+
+
 export default function Homepage() {
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setInformations(data.results);
-      });
-  }, []);
-
-  //https://image.tmdb.org/t/p/w500
-
-  const [informations, setInformations] = useState();
-
-
+  const {informations} = useContext(AppContext);
+  
   return (
     <div id={style.homepageContainer}>
       <header>
-        <Navbar />
+        <Navbar navSelected={'homepage'}/>
       </header>
       <section id="content" className={style.content}>
-        {informations &&
+        {informations.length > 0 &&
           informations.map((info, index) => {
             return (
               <MovieCard
                 title={info.title}
                 vote={info.vote_average}
-                posters={info.backdrop_path}
+                posters={info.poster_path}
                 id={info.id}
               />
             );
           })}
+          
       </section>
+      <div style={{display:'flex', flexDirection:'row', justifyContent:'center', padding:'2rem 0'}}>
+        <Pagination totalPage={500}/>
+      </div>
+      
     </div>
   );
 }
