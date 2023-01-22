@@ -23,7 +23,7 @@ export default function MovieCard({ title, vote, posters, id }) {
         />
       </div>
       <p className={css.voteAverage}>{vote} ★</p>
-      <h1 className="title">{title}</h1>
+      <h1 className={css.title}>{title}</h1>
     </Link>
   );
 }

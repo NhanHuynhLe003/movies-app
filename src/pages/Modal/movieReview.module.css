@@ -1,0 +1,13 @@
+
+@media screen and (max-width:576px) {
+    .videoHeight{
+        height: 300px;
+    }
+    .modalBody{
+        padding: 0 ;
+        background-color: #000;
+    }
+    .modalFooter{
+        display: none !important;
+    }
+}

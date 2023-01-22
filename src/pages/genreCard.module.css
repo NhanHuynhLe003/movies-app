@@ -23,3 +23,23 @@
     font-weight: bold;
     box-shadow: 3px 5px 2px rgb(198, 183, 23);
 }
+@media screen and (max-width: 576px) {
+    .button{
+    font-size: 12px;
+    padding: 6px;
+    border-radius: 15px;
+    margin: 2px;
+    border: none;
+    }
+    .btnSlected{
+        box-shadow: 0.7px 1.5px 2px rgb(198, 183, 23);
+    }
+    .button:hover{
+        font-size: 12px;
+        padding: 6px;
+        border-radius: 15px;
+        margin: 2px;
+        box-shadow: none;
+        
+    }
+}

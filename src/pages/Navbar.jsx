@@ -3,13 +3,54 @@ import search from "../assets/svg/search.svg";
 import navCss from "./navbar.module.css";
 import { Link, useParams } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
+import {FaBars} from 'react-icons/fa'
+import { useEffect } from "react";
 export default function Navbar({navSelected}) {
   let param = useParams();
   const {setInputKeyWord} =useContext(AppContext);
   const [valInput, setValInput] = useState('');
+  const [isClickBarBtn, setIsClickBarBtn] = useState(false);
+  
+  //get window size viewport
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+  
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
+  
+  const {width, height} = useWindowDimensions();
+  
+  useEffect(() => {
+    if(width < 576){
+      setIsClickBarBtn(false);
+    } else {
+      setIsClickBarBtn(true);
+    }
+  },[width])
+
+  
   return (
     <nav className={`${navCss.navBar}`}>
-      <ul className={navCss.ulElement}>
+      <button onClick={() => {
+        setIsClickBarBtn(!isClickBarBtn)}} className={navCss.BarsBtn}><FaBars fill="#fff"/></button>
+      <ul className={navCss.ulElement} style={isClickBarBtn?{display:'flex'}:{display:'none'}}>
         <li>
           <Link
             to="/"

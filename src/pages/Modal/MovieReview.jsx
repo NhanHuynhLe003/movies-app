@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import MovieIcon from "../../assets/svg/MovieIcon";
 import { AppContext } from "../../Context/AppContext";
 import style from "../movieDetail.module.css";
-
+import css from './movieReview.module.css'
 export default function MovieReview({movieKey}) {
   const [show, setShow] = useState(false);
   
@@ -24,7 +24,7 @@ export default function MovieReview({movieKey}) {
         <Modal.Header closeButton style={{border:'none'}} >
           <Modal.Title >Trailer</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={css.modalBody}>
           <iframe
             width="100%"
             height="500"
@@ -32,14 +32,16 @@ export default function MovieReview({movieKey}) {
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
+            className={css.videoHeight}
           ></iframe>
         </Modal.Body>
-        <Modal.Footer style={{border: 'none'}}>
+        <Modal.Footer style={{border: 'none'}} className={css.modalFooter}>
           <Button
             variant="success"
             onClick={handleClose}
             style={{ boxShadow: "3px 3px #ccc" }}
+            
           >
             <span style={{ fontWeight: "bold" }}>Close</span>
           </Button>

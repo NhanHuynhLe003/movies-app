@@ -10,3 +10,9 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+@media screen and (max-width:576px) {
+    #homepageContainer{
+        padding: 0;
+    }
+    
+}

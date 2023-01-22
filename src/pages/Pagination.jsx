@@ -140,8 +140,9 @@ export default function Pagination({ totalPage }) {
             Prev
           </button>
         </li>
+        <div id={styles.pageNumberContainer}>
         {curBtnConainer.map((page, index) => (
-          <li key={`${page}_${index}`} style={{ width: "3.5rem" }}>
+          <li key={`${page}_${index}`} className={styles.listItemPageNumber}>
             <button
               className={` ${styles.btn} ${
                 curNumOfPage === page ? styles.active : ""
@@ -155,6 +156,8 @@ export default function Pagination({ totalPage }) {
             </button>
           </li>
         ))}
+        </div>
+        
         <li>
           <button className={`${styles.btn}`} onClick={handleNextBtn}>
             Next

@@ -11,6 +11,7 @@
     list-style-type: none;
     display: flex;
     flex-direction: row;
+    padding: 0;
 }
 .btn{
     color: #fff;
@@ -25,4 +26,18 @@
 .btn:hover{
     color: #333;
     background: rgb(228, 210, 8);
+}
+.listItemPageNumber{
+    width: 3.5rem;
+}
+#pageNumberContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 576px) {
+    #pageNumberContainer{
+        display: none;
+    }
+    
 }

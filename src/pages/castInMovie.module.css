@@ -25,3 +25,12 @@
     color: #fff;
     margin-top: 1rem;
 }
+@media screen and (max-width: 576px) {
+    .avatar{
+        height: 4rem;
+        width: 100%;
+    }
+    .nameChar{
+        font-size: 1rem;
+    }
+}
