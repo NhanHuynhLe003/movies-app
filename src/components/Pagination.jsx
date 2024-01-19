@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../Context/AppContext";
-import styles from "./pagination.module.css";
+import styles from "../styles/pagination.module.css";
 export default function Pagination({ totalPage }) {
   const { setNewPage } = useContext(AppContext);
 
@@ -141,23 +141,23 @@ export default function Pagination({ totalPage }) {
           </button>
         </li>
         <div id={styles.pageNumberContainer}>
-        {curBtnConainer.map((page, index) => (
-          <li key={`${page}_${index}`} className={styles.listItemPageNumber}>
-            <button
-              className={` ${styles.btn} ${
-                curNumOfPage === page ? styles.active : ""
-              }`}
-              onClick={() => {
-                setCurIndex(index);
-                handleClick(page);
-              }}
-            >
-              {page}
-            </button>
-          </li>
-        ))}
+          {curBtnConainer.map((page, index) => (
+            <li key={`${page}_${index}`} className={styles.listItemPageNumber}>
+              <button
+                className={` ${styles.btn} ${
+                  curNumOfPage === page ? styles.active : ""
+                }`}
+                onClick={() => {
+                  setCurIndex(index);
+                  handleClick(page);
+                }}
+              >
+                {page}
+              </button>
+            </li>
+          ))}
         </div>
-        
+
         <li>
           <button className={`${styles.btn}`} onClick={handleNextBtn}>
             Next

@@ -1,11 +1,13 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.grayCl{
+
+.grayCl {
     color: #ccc
 }
+
 .imgLogoSize {
     width: 1.5rem;
 }
@@ -18,9 +20,10 @@
     min-height: 2rem;
 }
 
-.searchLogoSize{
+.searchLogoSize {
     width: 100%;
 }
+
 .searchBarElement {
     border-radius: 30px;
     padding: 0 1rem;
@@ -29,13 +32,13 @@
 }
 
 .searchBtn {
-    border: hidden; 
+    border: hidden;
     background-color: #ccc;
-    border-left: none; 
-    border-top-right-radius:30px;
-    border-bottom-right-radius:30px;
+    border-left: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     width: 2rem;
-    cursor:pointer;
+    cursor: pointer;
     width: 2rem;
     display: flex;
     align-items: center;
@@ -45,14 +48,16 @@
     right: 0;
     bottom: 0;
 }
-.ulElement{
+
+.ulElement {
     padding: 0;
     display: flex;
     flex-direction: row;
     list-style-type: none;
     align-items: center;
 }
-.listElement{
+
+.listElement {
     display: flex;
     flex-direction: row;
     margin: 0 1rem;
@@ -61,53 +66,62 @@
     padding: 1rem;
     color: #ccc
 }
-.moviesHub{
+
+.moviesHub {
     font-size: 20px;
     padding: 1rem;
     font-weight: bold;
     color: #fff;
 }
-.hoverElement:hover{
+
+.hoverElement:hover {
     background-color: #333;
 }
-.trending{
+
+.trending {
     font-size: 18px;
     padding: 1rem;
-    color:#ccc;
-    padding: 1rem;
-}
-.movies{
     color: #ccc;
     padding: 1rem;
 }
-.tvSeries{
+
+.movies {
     color: #ccc;
     padding: 1rem;
 }
-.search{
+
+.tvSeries {
+    color: #ccc;
+    padding: 1rem;
+}
+
+.search {
     color: #ccc;
 }
-.navBar{
+
+.navBar {
     background-color: #000;
-    padding: 1rem 0 3.5rem 0;
+    /* padding: 1rem 0 3.5rem 0; */
+    padding-bottom: 1rem;
     position: relative;
 }
 
-.selecting{
+.selecting {
     color: #fff;
     font-weight: bold;
 }
-.BarsBtn{
+
+.BarsBtn {
     display: none;
 }
 
 /* xs size */
 @media screen and (max-width: 576px) {
-    .ulElement{
+    .ulElement {
         flex-direction: column;
         display: none;
         position: absolute;
-        
+
         right: 13%;
         animation-name: barBtnAnimation;
         animation-duration: 400ms;
@@ -119,7 +133,8 @@
         border-bottom-right-radius: 20px;
         z-index: 10;
     }
-    .BarsBtn{
+
+    .BarsBtn {
         display: block;
         background-color: #333;
         border: none;
@@ -130,10 +145,12 @@
     }
 }
 
-@keyframes barBtnAnimation{
+@keyframes barBtnAnimation {
     from {
         right: -70%;
-    } to {
+    }
+
+    to {
         right: 13%;
     }
 }

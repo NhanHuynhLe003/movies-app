@@ -3,8 +3,8 @@ import { AppContext } from "../Context/AppContext";
 import { addGenre, delGenre, initState, setGenre } from "../reducer/constants";
 import reducer from "../reducer/reducer";
 import GenreCard from "./GenreCard";
-import css from "./genreList.module.css";
-import genreCardCss from "./genreCard.module.css";
+import css from "../styles/genreList.module.css";
+import genreCardCss from "../styles/genreCard.module.css";
 export default function GenreList({ getGenreInfo, getInfo }) {
   const { genres, informations } = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, initState);
@@ -26,7 +26,6 @@ export default function GenreList({ getGenreInfo, getInfo }) {
 
     handleGenreListContainer();
     getGenreInfo(genreContainerRef.current);
-
   }, [informations]);
 
   useEffect(() => {
@@ -72,19 +71,22 @@ export default function GenreList({ getGenreInfo, getInfo }) {
 
       /**
         why you have to use loop for this issue? because when page updated, it have to run from genreListInit to genreList.length. If 
-        page don't run from genreListInit, it won't update data in new pagination. it works liking a chain.
-        => if you realize that your page need chain, you should use loop.
-       */
+        page don't run from genreListInit, it won't update data in new pagination. it works as a chain-action.
+        
+        */
       if (isDeletedRef.current === false) {
         //handle when add data
         let tempGenreContainer = [];
         genreContainerRef.current.length > 0 &&
           genreContainerRef.current.forEach((infoMovie) => {
+            // nếu trong danh sách id server phim có chứa thể loại phim hiện tại đg nhấn thì sẽ được lưu vào bộ nhớ tạm
             if (infoMovie.genre_ids.indexOf(genreList[lenGenre - 1]) !== -1) {
               tempGenreContainer.push(infoMovie);
             }
           });
         genreContainerRef.current = tempGenreContainer;
+
+        //thêm phim vừa thêm vào bộ nhớ tạm
         historyGenreRef.current[lenGenre] = tempGenreContainer;
       } else {
         //handle when delete data

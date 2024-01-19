@@ -1,8 +1,9 @@
+/* edit card item */
 .cardContainer {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    padding: 6rem 1rem 1rem 1rem;
+    width: 20%;
+    padding: 3rem 1rem 1rem 1rem;
     margin: 2rem 1rem;
     background-color: rgb(31, 30, 30);
     color: #fff;
@@ -11,9 +12,17 @@
     transition: transform 300ms;
 }
 
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* card vote in card-item */
+
 .voteAverage {
-    padding: 1rem 0;
-    color: #FADA5E
+    padding: 0.5rem 0;
+    color: #FADA5E;
+    margin-bottom: 0;
 }
 
 .cardContainer:hover {
@@ -22,28 +31,33 @@
 }
 
 .backgroundThumbnail {
-    
-    height: 25rem;
+
+    height: 16rem;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
 }
+
 @media screen and (max-width: 576px) {
-    .cardContainer{
+    .cardContainer {
         padding: 1.5rem 0.5rem 0.5rem 0.5rem;
         width: 38%;
         margin: 0 1rem 1rem 0;
     }
-    .backgroundThumbnail{
+
+    .backgroundThumbnail {
         height: 10rem;
     }
-    .title{
+
+    .title {
         font-size: 1rem;
     }
-    .cardContainer:hover{
+
+    .cardContainer:hover {
         transform: scale(1, 1);
     }
-    .voteAverage{
+
+    .voteAverage {
         padding: 0.5rem 0;
         margin: 0;
     }
