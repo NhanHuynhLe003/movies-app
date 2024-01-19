@@ -26,7 +26,7 @@ export default function Navbar({ param }) {
       agr1: `/search-result/${e.target.value}`,
       agr2: e.target.value,
     };
-    debounce(2000, agrs);
+    debounce(1000, agrs);
 
     // Thực hiện logic tìm kiếm ở đây
   };
@@ -196,6 +196,7 @@ export default function Navbar({ param }) {
 
         <li className={`${navCss.searchBarContainer}`}>
           <input
+            placeholder="Search Movie"
             ref={searchInputRef}
             onInput={handleSearch}
             value={valInput}
