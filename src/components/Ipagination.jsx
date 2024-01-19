@@ -9,7 +9,7 @@ function Ipagination({ totalPage }) {
   }
   return (
     <Pagination
-      hideOnSinglePage
+      // hideOnSinglePage
       className={"i-pagi-custom"}
       onChange={handlePagination}
       pageSize={20}
