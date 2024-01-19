@@ -33,7 +33,9 @@ export default function SearchResult() {
                   );
                 })
               ) : (
-                <SkeletonMovieCard></SkeletonMovieCard>
+                [...Array(20)].map((_) => (
+                  <SkeletonMovieCard></SkeletonMovieCard>
+                ))
               )
             ) : (
               <h1 className={style.movieNotFound}>Movie Not Found</h1>
