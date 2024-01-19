@@ -4,18 +4,19 @@ export const AppContext = createContext({});
 
 export const AppProvider = ({ children }) => {
   const [informations, setInformations] = useState({});
-  const [cast, setCast] = useState();
 
+  const [genreId, setGenreId] = useState();
   const [genres, setGenres] = useState([]);
   const [newPage, setNewPage] = useState(1);
   const [searchResultStorage, setSearchResultStorage] = useState({});
   const [inputKeyWord, setInputKeyWord] = useState("hello");
   const [totalPageSearchResult, setTotalPageSearchResult] = useState();
-  const [movieDetail, setMovieDetail] = useState({});
-  const [movieVideo, setMovieVideo] = useState({});
-  const [idMovie, setIdMovie] = useState(0);
+
   const [isClickThumbnail, setIsClickThumbnail] = useState(false);
-  const [maxTotalPage, setMaxTotalPage] = useState(1);
+  const [maxTotalPageMovies, setMaxTotalPageMovies] = useState();
+  const [maxTotalPageTrending, setMaxTotalPageTrending] = useState();
+  const [maxTotalPageSearch, setMaxTotalPageSearch] = useState();
+  const [moviesGenre, setMoviesGenre] = useState([]);
 
   // lấy ra toàn bộ phim theo trang
   useEffect(() => {
@@ -25,37 +26,9 @@ export const AppProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setInformations(data.results);
-        setMaxTotalPage(data.total_pages);
+        setMaxTotalPageTrending(data.total_pages);
       });
   }, [newPage]);
-
-  // lay ra nhung api user chi tiết
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${idMovie}?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setMovieDetail(data);
-        setCast(data);
-      });
-
-    fetch(
-      `https://api.themoviedb.org/3/movie/${idMovie}/credits?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setCast(data);
-      });
-
-    fetch(
-      `https://api.themoviedb.org/3/movie/${idMovie}/videos?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setMovieVideo(data.results);
-      });
-  }, [idMovie]);
 
   // lấy ra thể loại phim
   useEffect(() => {
@@ -66,6 +39,19 @@ export const AppProvider = ({ children }) => {
       .then((data) => setGenres(data.genres));
   }, []);
 
+  //lấy ra bộ phim đúng với danh sách thể loại
+  useEffect(() => {
+    fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=e9e9d8da18ae29fc430845952232787c&page=${newPage}&with_genres=${genreId}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setMoviesGenre(data.results);
+        setMaxTotalPageMovies(data.total_pages);
+      });
+  }, [genreId, newPage]);
+
+  // lay ra danh sach phim theo ket qua tim kiem
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US&query=${inputKeyWord}&page=${newPage}`
@@ -73,7 +59,7 @@ export const AppProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setTotalPageSearchResult(data.total_pages);
-
+        setMaxTotalPageSearch(data.total_pages);
         setSearchResultStorage(data.results);
       });
   }, [inputKeyWord, newPage]);
@@ -82,10 +68,6 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         informations,
-        movieDetail,
-        cast,
-        idMovie,
-        setIdMovie,
 
         genres,
         setNewPage,
@@ -93,10 +75,14 @@ export const AppProvider = ({ children }) => {
         searchResultStorage,
         totalPageSearchResult,
         setInputKeyWord,
-        movieVideo,
+        inputKeyWord,
         isClickThumbnail,
         setIsClickThumbnail,
-        maxTotalPage,
+        maxTotalPageMovies,
+        maxTotalPageSearch,
+        maxTotalPageTrending,
+        setGenreId,
+        moviesGenre,
       }}
     >
       {children}

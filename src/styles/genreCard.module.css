@@ -1,45 +1,54 @@
-.button{
+.button {
     background: #333;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 20px;
     cursor: pointer;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 30px;
     margin: 0.3rem;
     border: none;
+    transition: 50ms all ease;
 }
 
-.button:hover{
+.button:hover {
+    background-color: rgba(52, 52, 52, 0.8);
+    color: rgba(255, 255, 255, 1);
+}
+
+.activeGenreCard {
+    background-color: rgb(228, 210, 8);
+    color: #333;
+    font-weight: bold;
+    box-shadow: 3px 5px 2px rgb(198, 183, 23);
+
+}
+
+.activeGenreCard:hover {
     background-color: rgb(228, 210, 8);
     color: #333;
     font-weight: bold;
     box-shadow: 3px 5px 2px rgb(198, 183, 23);
 }
 
-.btnSlected{
-    background-color: rgb(228, 210, 8);
-    color: #333;
-    font-weight: bold;
-    box-shadow: 3px 5px 2px rgb(198, 183, 23);
-}
+
 @media screen and (max-width: 576px) {
-    .button{
-    font-size: 12px;
-    padding: 6px;
-    border-radius: 15px;
-    margin: 2px;
-    border: none;
-    }
-    .btnSlected{
-        box-shadow: 0.7px 1.5px 2px rgb(198, 183, 23);
-    }
-    .button:hover{
+    .button {
         font-size: 12px;
         padding: 6px;
         border-radius: 15px;
         margin: 2px;
-        box-shadow: none;
-        
+        border: none;
     }
+
+    .button:hover {
+        background-color: rgba(82, 82, 82, 0.7);
+    }
+
+    .activeGenreCard {
+        box-shadow: 0.7px 1.5px 2px rgb(198, 183, 23);
+    }
+
+
+
 }

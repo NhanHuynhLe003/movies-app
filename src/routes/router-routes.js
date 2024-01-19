@@ -26,6 +26,11 @@ const RouterRoutes = [
   },
   {
     url: "/search-result",
+    key: "search-page",
+    page: <Homepage></Homepage>,
+  },
+  {
+    url: "/search-result/:id",
     key: "search-res",
     page: <SearchResult />,
   },

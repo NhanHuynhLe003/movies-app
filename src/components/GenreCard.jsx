@@ -1,32 +1,33 @@
 import React, { useRef } from "react";
 import css from "../styles/genreCard.module.css";
+
+import clsx from "clsx";
+import { setGenre, updateGenre } from "../reducer/constants";
+
 export default function GenreCard({
   genreName,
   idGenre,
-  handleClick,
-  getBtnRef,
-  indexCard,
-  delGenreCard,
+  state,
+  dispatch,
+  isActive,
 }) {
+  const { genre, genreList } = state;
   const btnRef = useRef();
+
+  function handleClickCard() {
+    if (Object.keys(genreList).length === 0) {
+      dispatch(setGenre(idGenre));
+    } else {
+      dispatch(updateGenre(idGenre));
+    }
+  }
 
   return (
     <button
       ref={btnRef}
-      onClick={() => {
-        if (btnRef.current.className.indexOf(css.btnSlected) === -1) {
-          // console.log(`the ${genreName} da dc them class`);
-          handleClick(idGenre);
-        } else {
-          // console.log(`the ${genreName} da dc xoa class`);
-
-          delGenreCard(idGenre);
-        }
-
-        getBtnRef(btnRef);
-      }}
+      onClick={handleClickCard}
       key={idGenre}
-      className={css.button}
+      className={clsx(css.button, { [css.activeGenreCard]: isActive })}
     >
       {genreName}
     </button>

@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../Context/AppContext";
+import React, { useRef } from "react";
 import style from "../styles/castInMovie.module.css";
 
 //isue dg trong trang detail -> reset phai doi cho data truyen vao thi moi chay
-export default function GetCastInMovie({ id }) {
-  const curId = Number(id);
-
-  const { cast, setIdMovie } = useContext(AppContext);
+export default function GetCastInMovie({ cast }) {
   const infoCharacterRef = useRef([]);
 
   // setIdMovie(curId)

@@ -3,6 +3,7 @@ import "./App.css";
 import { AppProvider } from "./Context/AppContext";
 import { RouterRoutes } from "./routes/router-routes";
 import "./styles/custom/custom-pagination-antd.css";
+import "./styles/custom/skeleton-custom-movie-card.css";
 function App() {
   return (
     <div className="App">

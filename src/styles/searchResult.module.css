@@ -1,4 +1,4 @@
-.movieSearched{
+.movieSearched {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -6,17 +6,21 @@
     margin-bottom: 2rem;
     min-height: 65.5vh;
 }
-.contentSection{
+
+.contentSection {
     padding: 2rem 0;
 }
-.pagination{
-    width:40%;
+
+.pagination {
+    width: 40%;
     margin: 0 auto;
 }
-.searchResult{
+
+.searchResult {
     background-color: #000;
 }
-.movieNotFound{
+
+.movieNotFound {
     color: #fff;
     font-size: 40px;
     font-weight: bold;

@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
-import { Pagination, ConfigProvider } from "antd";
+import { Pagination } from "antd";
+import React, { memo, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 
-export default function Ipagination({ totalPage }) {
+function Ipagination({ totalPage }) {
   const { setNewPage } = useContext(AppContext);
   function handlePagination(current) {
     setNewPage(current);
   }
   return (
     <Pagination
+      hideOnSinglePage
       className={"i-pagi-custom"}
       onChange={handlePagination}
       pageSize={20}
@@ -17,3 +18,4 @@ export default function Ipagination({ totalPage }) {
     ></Pagination>
   );
 }
+export default memo(Ipagination);

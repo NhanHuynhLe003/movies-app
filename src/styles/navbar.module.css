@@ -33,20 +33,28 @@
 
 .searchBtn {
     border: hidden;
-    background-color: #ccc;
+
+    background-color: rgb(228, 210, 8);
+    color: #000;
+
     border-left: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-    width: 2rem;
+    width: 3rem;
     cursor: pointer;
-    width: 2rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
+
     top: 0;
     right: 0;
     bottom: 0;
+}
+
+.searchBtn:hover {
+    opacity: 0.7;
 }
 
 .ulElement {
@@ -122,26 +130,29 @@
         display: none;
         position: absolute;
 
-        right: 13%;
+        right: 17%;
+        transition: 200ms;
         animation-name: barBtnAnimation;
         animation-duration: 400ms;
         background-color: #333;
-        height: 18rem;
-        width: 17rem;
+        height: auto;
+        padding-bottom: 1.5rem;
+        width: 78%;
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
-        z-index: 10;
+        z-index: 999;
     }
 
     .BarsBtn {
         display: block;
         background-color: #333;
         border: none;
-        padding: 0.7rem;
+        padding: 0.7rem 1rem;
         border-radius: 5px;
         position: absolute;
-        left: 87%;
+        right: 5%;
+        top: 1rem;
     }
 }
 
@@ -151,6 +162,16 @@
     }
 
     to {
-        right: 13%;
+        right: 17%;
+    }
+}
+
+@keyframes barBtnAnimationDisappear {
+    from {
+        right: 17%;
+    }
+
+    to {
+        right: -70%;
     }
 }

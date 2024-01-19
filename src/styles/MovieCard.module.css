@@ -9,7 +9,8 @@
     color: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 10px -4px rgb(83, 83, 83);
-    transition: transform 300ms;
+    transition: transform 200ms;
+    animation: fade-in 1s ease-in-out;
 }
 
 .title {
@@ -32,7 +33,7 @@
 
 .backgroundThumbnail {
 
-    height: 16rem;
+    min-height: 16rem;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -60,5 +61,15 @@
     .voteAverage {
         padding: 0.5rem 0;
         margin: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

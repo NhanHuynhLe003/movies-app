@@ -1,15 +1,46 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
+import logo from "../assets/logo/main-logo-movie-center.png";
 import search from "../assets/svg/search.svg";
 import navCss from "../styles/navbar.module.css";
-import { Link, useParams } from "react-router-dom";
-import { AppContext } from "../Context/AppContext";
-import { FaBars } from "react-icons/fa";
-import logo from "../assets/logo/main-logo-movie-center.png";
-import { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 export default function Navbar({ param }) {
-  console.log("PARAM::: ", param);
+  const navigate = useNavigate();
+
   const { setInputKeyWord } = useContext(AppContext);
   const [valInput, setValInput] = useState("");
+
+  const debounceTimerId = useRef();
+  const searchInputRef = useRef();
+  // hàm xử lý tìm kiếm
+  const handleSearch = (e) => {
+    setValInput(e.target.value);
+    //dùng debounce để tối ưu req gửi lên server
+
+    const agrs = {
+      fc1: navigate,
+      fc2: setInputKeyWord,
+      agr1: `/search-result/${e.target.value}`,
+      agr2: e.target.value,
+    };
+    debounce(2000, agrs);
+
+    // Thực hiện logic tìm kiếm ở đây
+  };
+  const debounce = (delay, agrs) => {
+    if (debounceTimerId.current) {
+      //ko clear có khả năng trùng lặp với id tạo ra ở kq tìm kiếm trc đó
+      clearTimeout(debounceTimerId.current);
+    }
+    debounceTimerId.current = setTimeout(() => {
+      agrs.fc2(agrs.agr2);
+      agrs.fc1(agrs.agr1);
+    }, delay);
+  };
+
   const [isClickBarBtn, setIsClickBarBtn] = useState(false);
 
   //get window size viewport
@@ -165,13 +196,14 @@ export default function Navbar({ param }) {
 
         <li className={`${navCss.searchBarContainer}`}>
           <input
-            onChange={(e) => setValInput(e.target.value)}
+            ref={searchInputRef}
+            onInput={handleSearch}
             value={valInput}
             type="text"
             className={navCss.searchBarElement}
           />
           <Link
-            to="/search-result"
+            to={`/search-result/${valInput}`}
             className={navCss.searchBtn}
             onClick={() => setInputKeyWord(valInput)}
           >
