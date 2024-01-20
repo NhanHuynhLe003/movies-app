@@ -7,30 +7,43 @@ export const AppProvider = ({ children }) => {
 
   const [genreId, setGenreId] = useState();
   const [genres, setGenres] = useState([]);
-  const [newPage, setNewPage] = useState(1);
   const [searchResultStorage, setSearchResultStorage] = useState({});
   const [inputKeyWord, setInputKeyWord] = useState("hello");
   const [totalPageSearchResult, setTotalPageSearchResult] = useState();
 
   const [isClickThumbnail, setIsClickThumbnail] = useState(false);
-  const [maxTotalPageMovies, setMaxTotalPageMovies] = useState();
-  const [maxTotalPageTrending, setMaxTotalPageTrending] = useState();
-  const [maxTotalPageSearch, setMaxTotalPageSearch] = useState();
+
+  // quản lý chuyển trang pagination
+  const [newPage, setNewPage] = useState({
+    trending: 1,
+    movies: 1,
+    searchPage: 1,
+  });
+
+  //lấy ra số trang tổng mỗi trang
+  const [maxTotal, setMaxTotal] = useState({
+    trending: 1,
+    movies: 1,
+    searchPage: 1,
+  });
+
   const [moviesGenre, setMoviesGenre] = useState([]);
 
   // lấy ra toàn bộ phim theo trang
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=${newPage}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=${newPage.trending}`
     )
       .then((res) => res.json())
       .then((data) => {
         setInformations(data.results);
-        setMaxTotalPageTrending(data.total_pages);
-      });
-  }, [newPage]);
 
-  // lấy ra thể loại phim
+        // setMaxTotal((prev) => ({ ...prev, trending: data.total_pages }));
+        setMaxTotal((prev) => ({ ...prev, trending: 500 }));
+      });
+  }, [newPage.trending]);
+
+  // lấy ra thể toàn bộ loại phim
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US`
@@ -42,27 +55,35 @@ export const AppProvider = ({ children }) => {
   //lấy ra bộ phim đúng với danh sách thể loại
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=e9e9d8da18ae29fc430845952232787c&page=${newPage}&with_genres=${genreId}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=e9e9d8da18ae29fc430845952232787c&page=${newPage.movies}&with_genres=${genreId}`
     )
       .then((res) => res.json())
       .then((data) => {
         setMoviesGenre(data.results);
-        setMaxTotalPageMovies(data.total_pages);
+
+        // setMaxTotal((prev) => ({ ...prev, movies: data.total_pages }));
+        if (data.total_pages <= 500) {
+          setMaxTotal((prev) => ({ ...prev, movies: data.total_pages }));
+          return;
+        }
+        setMaxTotal((prev) => ({ ...prev, movies: 500 }));
       });
-  }, [genreId, newPage]);
+  }, [genreId, newPage.movies]);
 
   // lay ra danh sach phim theo ket qua tim kiem
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US&query=${inputKeyWord}&page=${newPage}`
+      `https://api.themoviedb.org/3/search/movie?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US&query=${inputKeyWord}&page=${newPage.searchPage}`
     )
       .then((res) => res.json())
       .then((data) => {
         setTotalPageSearchResult(data.total_pages);
-        setMaxTotalPageSearch(data.total_pages);
+        // setMaxTotal((prev) => ({ ...prev, searchPage: data.total_pages }));
+        setMaxTotal((prev) => ({ ...prev, searchPage: 500 }));
+
         setSearchResultStorage(data.results);
       });
-  }, [inputKeyWord, newPage]);
+  }, [inputKeyWord, newPage.searchPage]);
 
   return (
     <AppContext.Provider
@@ -78,9 +99,7 @@ export const AppProvider = ({ children }) => {
         inputKeyWord,
         isClickThumbnail,
         setIsClickThumbnail,
-        maxTotalPageMovies,
-        maxTotalPageSearch,
-        maxTotalPageTrending,
+        maxTotal,
         setGenreId,
         moviesGenre,
       }}

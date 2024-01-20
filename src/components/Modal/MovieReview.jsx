@@ -18,7 +18,12 @@ export default function MovieReview({ movieKey }) {
         <span>Play Trailer</span>
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="xl">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="xl"
+        className="Modal-Review-Movie"
+      >
         <Modal.Header closeButton style={{ border: "none" }}>
           <Modal.Title>Trailer</Modal.Title>
         </Modal.Header>

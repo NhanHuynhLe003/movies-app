@@ -4,6 +4,8 @@ import { AppProvider } from "./Context/AppContext";
 import { RouterRoutes } from "./routes/router-routes";
 import "./styles/custom/custom-pagination-antd.css";
 import "./styles/custom/skeleton-custom-movie-card.css";
+import "./styles/custom/custom-modal-review-movie.css";
+
 function App() {
   return (
     <div className="App">

@@ -10,7 +10,7 @@ import MainLayout from "../layouts/MainLayout";
 import css from "../styles/movies.module.css";
 
 export default function Movies() {
-  const { moviesGenre, maxTotalPageMovies } = useContext(AppContext);
+  const { moviesGenre, maxTotal } = useContext(AppContext);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Movies() {
       <div className={css.homepageContainer}>
         <section id="content" className={css.sectionContent}>
           <div id="genreList">
-            <GenreList key={"genreList"} />
+            <GenreList key={"genreListMovie"} />
           </div>
           <div
             id="cardContainer"
@@ -58,7 +58,10 @@ export default function Movies() {
               padding: "2rem 0",
             }}
           >
-            <Ipagination totalPage={maxTotalPageMovies}></Ipagination>
+            <Ipagination
+              pageName={"movies"}
+              totalPage={maxTotal.movies}
+            ></Ipagination>
           </div>
         </section>
       </div>

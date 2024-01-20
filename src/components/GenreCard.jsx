@@ -15,6 +15,7 @@ export default function GenreCard({
   const btnRef = useRef();
 
   function handleClickCard() {
+    //chưa có thì thêm thể loại vào object genreList
     if (Object.keys(genreList).length === 0) {
       dispatch(setGenre(idGenre));
     } else {

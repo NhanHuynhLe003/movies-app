@@ -7,7 +7,7 @@ import style from "../styles/homepage.module.css";
 import { useLocation } from "react-router-dom";
 import SkeletonMovieCard from "../components/skeleton/skeletonMovieCard";
 export default function Homepage() {
-  const { informations, maxTotalPageTrending } = useContext(AppContext);
+  const { informations, maxTotal } = useContext(AppContext);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Homepage() {
             padding: "2rem 0",
           }}
         >
-          <IPagination totalPage={maxTotalPageTrending} />
+          <IPagination totalPage={maxTotal.trending} pageName={"trending"} />
         </div>
       </div>
     </MainLayout>

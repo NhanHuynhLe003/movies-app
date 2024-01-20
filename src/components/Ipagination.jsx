@@ -2,14 +2,16 @@ import { Pagination } from "antd";
 import React, { memo, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 
-function Ipagination({ totalPage }) {
+function Ipagination({ totalPage = 1, pageName }) {
   const { setNewPage } = useContext(AppContext);
   function handlePagination(current) {
-    setNewPage(current);
+    setNewPage((prev) => {
+      return { ...prev, [pageName]: current };
+    });
   }
   return (
     <Pagination
-      // hideOnSinglePage
+      hideOnSinglePage
       className={"i-pagi-custom"}
       onChange={handlePagination}
       pageSize={20}

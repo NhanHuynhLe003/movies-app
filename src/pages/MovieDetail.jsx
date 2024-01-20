@@ -1,29 +1,49 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { FaPlayCircle } from "react-icons/fa";
-import { AppContext } from "../Context/AppContext";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
+import { FaPlayCircle, FaStar } from "react-icons/fa";
+import { useLocation, useParams } from "react-router-dom";
 import GetCastInMovie from "../components/GetCastInMovie";
 import MovieReview from "../components/Modal/MovieReview";
 import MainLayout from "../layouts/MainLayout";
 import style from "../styles/movieDetail.module.css";
-
+import reducer from "../reducer/reducer";
+import { initState, setGenre } from "../reducer/constants";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 export default function MovieDetail() {
   //https://api.themoviedb.org/3/movie/315162?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US
 
   // lay ra nhung api user chi tiết
+  const navigate = useNavigate();
+  const { genres, setGenreId } = useContext(AppContext);
+
+  const [state, dispatch] = useReducer(reducer, initState);
   const [movieDetail, setMovieDetail] = useState({});
   const [movieVideo, setMovieVideo] = useState({});
   const [idMovie, setIdMovie] = useState(0);
   const [cast, setCast] = useState();
+
+  function onClickGenre(genreId) {
+    dispatch(setGenre(genreId));
+    // console.log(state.genreList);
+    setGenreId(genreId);
+    navigate("/movies");
+  }
+
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${idMovie}?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log("DATA::: ", data);
         setMovieDetail(data);
-        setCast(data);
+        // setCast(data);
       });
 
     fetch(
@@ -84,6 +104,26 @@ export default function MovieDetail() {
                 </h1>
                 <p className={style.padding1rem} style={{ color: "#ccc" }}>
                   {movieDetail.overview}
+                </p>
+                <p className={style.rating}>
+                  {movieDetail.vote_average}{" "}
+                  <FaStar fill="rgb(228, 210, 8)"></FaStar>
+                  <span className={style.voteCount}>
+                    ({movieDetail.vote_count})
+                  </span>
+                </p>
+                <p className={style.genres}>
+                  {movieDetail &&
+                    movieDetail.genres &&
+                    movieDetail.genres.length > 0 &&
+                    movieDetail.genres.map((genre) => (
+                      <button
+                        onClick={() => onClickGenre(genre.id)}
+                        title={`category movie ${genre.name}`}
+                      >
+                        {genre.name}
+                      </button>
+                    ))}
                 </p>
                 <p
                   className={style.padding1rem}

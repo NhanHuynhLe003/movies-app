@@ -8,7 +8,7 @@ import style from "../styles/searchResult.module.css";
 import SkeletonMovieCard from "../components/skeleton/skeletonMovieCard";
 export default function SearchResult() {
   //https://api.themoviedb.org/3/search/movie?api_key=2edf9f02e088272f6ff2eab6bf5fa21a&language=en-US&query=spider&page=1
-  const { searchResultStorage, maxTotalPageSearch } = useContext(AppContext);
+  const { searchResultStorage, maxTotal } = useContext(AppContext);
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -41,7 +41,10 @@ export default function SearchResult() {
               <h1 className={style.movieNotFound}>Movie Not Found</h1>
             )}
           </div>
-          <Ipagination totalPage={maxTotalPageSearch}></Ipagination>
+          <Ipagination
+            pageName={"searchPage"}
+            totalPage={maxTotal.searchPage}
+          ></Ipagination>
         </section>
         <footer></footer>
       </div>
